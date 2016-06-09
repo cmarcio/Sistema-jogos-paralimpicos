@@ -1,0 +1,41 @@
+
+.root{
+    -primary-color: #d31d2e;
+    -primary-color-dark: #bd1c2b;
+    -secondary-color: #fa6d2d;
+    -highlight-color: #ffd130;
+    -contrast-color1: #007fb8;
+    -contrast-color2: #55ad4a;
+
+}
+
+.scenario{
+    -fx-background-image: url("../resources/images/rio2016.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+
+.menu_bar{
+    -fx-background-color: -primary-color;
+    -fx-spacing: 0px;
+}
+
+.menu_bar .label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24;
+    -fx-padding: 1em 2em 1em 2em;
+}
+
+.menu_bar .button{
+    -fx-background-color: -primary-color-dark;
+    -fx-background-radius: 0;
+    -fx-padding: 1em 0 1em 0;
+    -fx-margin-bottom: 1em;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.menu_bar .button:hover{
+    -fx-background-color: -secondary-color;
+    -fx-cursor: hand;
+}
