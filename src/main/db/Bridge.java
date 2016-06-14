@@ -2,7 +2,6 @@ package main.db;
 
 import java.sql.*;
 import java.util.Scanner;
-import java.util.StringJoiner;
 
 /**
  * Created by Marcio on 10/06/2016.
