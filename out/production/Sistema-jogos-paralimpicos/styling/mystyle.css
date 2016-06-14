@@ -1,0 +1,83 @@
+
+.root{
+    -primary-color: #d31d2e;
+    -primary-color-dark: #bd1c2b;
+    -secondary-color: #fa6d2d;
+    -secondary-color-dark: #e36024;
+    -highlight-color: #ffd130;
+    -contrast-color1: #007fb8;
+    -contrast-color2: #55ad4a;
+
+}
+
+.scenario{
+    -fx-background-image: url("../resources/images/rio2016.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+
+.menu_bar{
+    -fx-background-color: -primary-color;
+    -fx-spacing: 0px;
+}
+
+.menu_bar .label{
+    -fx-text-fill: white;
+    -fx-font-size: 24;
+    -fx-padding: 1em 2em 1em 2em;
+}
+
+.menu_bar .button{
+    -fx-background-color: -primary-color-dark;
+    -fx-background-radius: 0;
+    -fx-padding: 1em 0 1em 0;
+    -fx-margin-bottom: 1em;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.menu_bar .button:hover{
+    -fx-background-color: -secondary-color;
+    -fx-cursor: hand;
+}
+
+.content_area{
+    -fx-padding: 3em 1em 0 1em;
+}
+
+.content_area > .vbox{
+    -fx-background-color: white;
+}
+
+.search_bar{
+    -fx-background-color: -secondary-color;
+    -fx-padding: 0 1em 1em 1em;
+    -fx-spacing: 3;
+}
+.search_bar .text-field{
+    -fx-min-height: 30;
+    -fx-background-radius: 5 0 0 5;
+    -fx-highlight-fill: -highlight-color;
+}
+
+.search_bar .button{
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-background-color: -secondary-color-dark;
+    -fx-text-alignment: center;
+    -fx-background-radius: 0 5 5 0;
+}
+
+.search_bar .button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: -highlight-color;
+    -fx-resize: false;
+}
+
+#title{
+    -fx-background-color: none;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-padding: 1em 0 0 0;
+}
+
