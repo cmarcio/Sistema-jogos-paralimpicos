@@ -3,17 +3,15 @@ package main.db;
 import java.sql.*;
 import java.util.Scanner;
 
-/**
- * Created by Marcio on 10/06/2016.
- */
+
 public class Bridge {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DB_URL = "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl";
 
     //  Database credentials
-    static final String USER = "m8937462";
-    static final String PASS = "Lab2016";
+    static final String USER = "a8937034";
+    static final String PASS = "a8937034";
 
     public void insertTime(){
         Connection conn = null;
