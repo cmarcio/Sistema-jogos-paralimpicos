@@ -1,0 +1,57 @@
+/* Estilo das janelas de cadastro */
+
+.root{
+    -primary-color: #d31d2e;
+    -primary-color-dark: #bd1c2b;
+    -secondary-color: #fa6d2d;
+    -secondary-color-dark: #e36024;
+    -highlight-color: #ffd130;
+    -contrast-color1: #007fb8;
+    -contrast-color2: #55ad4a;
+}
+
+.scenario{
+    -fx-background-color: -contrast-color2;
+    -fx-padding: 10 20 10 20;
+}
+
+.scenario .label{
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+    -fx-padding: 10 0 0 0;
+}
+
+.scenario .text-field{
+    -fx-padding: 5 5 5 5;
+}
+
+.scenario .radio-button{
+    -fx-padding: 0 0 5 0;
+    -fx-text-fill: white;
+}
+
+.scenario .date-picker .label{
+    -fx-padding: 0 0 0 0;
+    -fx-text-fill: black;
+}
+
+.scenario .date-picker .button{
+    -fx-background-color: none;
+    -fx-padding: 0 0 0 0;
+}
+
+.scenario .button{
+    -fx-background-color: -highlight-color;
+    -fx-padding: 10 20 10 20;
+}
+
+.scenario .button:hover{
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+#title{
+    -fx-font-size: 48;
+    -fx-text-fill: white;
+}

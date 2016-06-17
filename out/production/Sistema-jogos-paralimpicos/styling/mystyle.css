@@ -1,3 +1,4 @@
+/* Estilo da janela principal */
 
 .root{
     -primary-color: #d31d2e;
@@ -10,11 +11,19 @@
 
 }
 
+/**************************
+**      senário          **
+***************************/
+
 .scenario{
     -fx-background-image: url("../resources/images/rio2016.jpg");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
 }
+
+/**************************
+**     barra de menu     **
+***************************/
 
 .menu_bar{
     -fx-background-color: -primary-color;
@@ -41,13 +50,28 @@
     -fx-cursor: hand;
 }
 
+/**************************
+**    area de conteudo   **
+***************************/
+
 .content_area{
-    -fx-padding: 3em 1em 0 1em;
+    -fx-padding: 3em 2em 0em 2em;
 }
 
-.content_area > .vbox{
+.content_area .vbox{
     -fx-background-color: white;
+    -fx-padding: 5 10 0 10;
 }
+
+.content_area #title{
+    -fx-text-fill: -contrast-color1;
+    -fx-font-size: 48;
+    -fx-padding: 0 0 0 0;
+}
+
+/**************************
+**     barra de buscas   **
+***************************/
 
 .search_bar{
     -fx-background-color: -secondary-color;
@@ -73,6 +97,15 @@
     -fx-background-color: -highlight-color;
     -fx-resize: false;
 }
+
+.search_bar .radio-button{
+    -fx-text-fill: white;
+    -fx-padding: 5 0 0 0;
+}
+
+/**************************
+**     Títulos           **
+***************************/
 
 #title{
     -fx-background-color: none;

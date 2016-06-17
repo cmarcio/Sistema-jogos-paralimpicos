@@ -21,8 +21,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        Bridge conection = new Bridge();
-        conection.insertTime();
+        //Bridge conection = new Bridge();
+        //conection.insertTime();
         launch(args);
     }
 }
