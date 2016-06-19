@@ -69,6 +69,15 @@
                   <RadioButton fx:id="rbtn1" mnemonicParsing="false" text="RadioButton" />
                   <RadioButton fx:id="rbtn2" mnemonicParsing="false" text="RadioButton" />
                   <RadioButton fx:id="rbtn3" mnemonicParsing="false" text="RadioButton" />
+                  <AnchorPane VBox.vgrow="ALWAYS">
+                     <children>
+                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <bottom>
+                              <Button fx:id="btnAdd" mnemonicParsing="false" styleClass="add_button" text="Adicionar" BorderPane.alignment="CENTER" />
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
                </children></VBox>
          </right>
          <center>
@@ -77,9 +86,22 @@
                   <VBox styleClass="vbox" BorderPane.alignment="CENTER">
                      <children>
                         <Label id="title" fx:id="entityName" text="Entidade" />
-                        <AnchorPane>
+                        <AnchorPane VBox.vgrow="ALWAYS">
                            <children>
-                              <TableView fx:id="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ScrollPane prefHeight="390.0" prefViewportHeight="389.0" prefViewportWidth="339.0" prefWidth="339.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <TableView fx:id="tableAthlete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="athleteNumber" prefWidth="75.0" text="Numero" />
+                                          <TableColumn fx:id="athleteName" prefWidth="75.0" text="Nome" />
+                                          <TableColumn fx:id="athleteSport" prefWidth="75.0" text="Esporte" />
+                                          <TableColumn fx:id="athleteGenre" prefWidth="75.0" text="Sexo" />
+                                          <TableColumn fx:id="athleteBirth" prefWidth="75.0" text="Data de nascimento" />
+                                          <TableColumn fx:id="athleteCountry" prefWidth="75.0" text="País" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </AnchorPane>
                      </children></VBox>

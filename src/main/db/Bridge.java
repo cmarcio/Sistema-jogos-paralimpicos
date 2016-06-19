@@ -1,7 +1,11 @@
 package main.db;
 
+import oracle.sql.DATE;
+
 import java.sql.*;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Bridge {
@@ -13,51 +17,61 @@ public class Bridge {
     static final String USER = "a8937034";
     static final String PASS = "a8937034";
 
-    public void insertTime(){
+    public static Connection connectDB() {
         Connection conn = null;
-        Statement stmt = null;
-        try{
-            //STEP 2: Register JDBC driver
+        try {
+            // Register JDBC driver
             Class.forName(JDBC_DRIVER);
-
-            //STEP 3: Open a connection
-            System.out.println("Connecting to a selected database...");
+            // Open connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Connected database successfully...");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.out.println("ERRO AO ABRIR CONEXÃO");
+        }
+        return conn;
+    }
 
-            //STEP 4: Execute a query
-            System.out.println("Inserting records into the table... TIME");
-            System.out.println("DIGITE O NOME DO TIME E O ESTADO");
-            Scanner scanner = new Scanner(System.in);
-            String nome = "'" + scanner.next() + "'";
-            String estado = "'" + scanner.next() + "'";
+    public static ArrayList<Athlete> getAthletes(){
+        ArrayList<Athlete> athletes = new ArrayList<>();
+        Statement stmt = null;
+        Connection conn = connectDB();
+
+        try {
             stmt = conn.createStatement();
 
-            String sql = "INSERT INTO TIME VALUES (" + nome + ", " + estado + ", 'profissional', 0)";
-            stmt.executeUpdate(sql);
+            String sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta";
+            ResultSet rs = stmt.executeQuery(sql);
 
-            System.out.println("Inserted records into the table...");
+            while(rs.next()){
+                //Retrieve by column name
+                int number  = rs.getInt("numero");
+                String name = rs.getString("nome");
+                String sport = rs.getString("esporte");
+                String country = rs.getString("pais");
+                String gender = rs.getString("genero");
+                Date birth = rs.getDate("nascimento");
 
-        }catch(SQLException se){
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }catch(Exception e){
-            //Handle errors for Class.forName
+                //System.out.println();
+                Athlete athlete = new Athlete(name, sport, country, number, gender);
+
+                if(birth != null)
+                    athlete.setBirth(birth.toLocalDate());
+
+                athletes.add(athlete);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-            //finally block used to close resources
-            try{
-                if(stmt!=null)
-                    conn.close();
-            }catch(SQLException se){
-            }// do nothing
-            try{
-                if(conn!=null)
-                    conn.close();
-            }catch(SQLException se){
-                se.printStackTrace();
-            }//end finally try
-        }//end try
-        System.out.println("Goodbye!");
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return athletes;
     }
 }

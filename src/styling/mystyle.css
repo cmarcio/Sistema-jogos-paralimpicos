@@ -98,6 +98,10 @@
     -fx-resize: false;
 }
 
+.search_bar .add_button{
+    -fx-background-radius: 0 0 0 0;
+}
+
 .search_bar .radio-button{
     -fx-text-fill: white;
     -fx-padding: 5 0 0 0;
