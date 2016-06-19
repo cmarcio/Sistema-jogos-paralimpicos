@@ -3,65 +3,29 @@ package main.register;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import main.db.Athlete;
+import main.db.Sport;
 
-import java.time.LocalDate;
-
-public class AthleteController{
-    final ToggleGroup genderGroup = new ToggleGroup();
-
-    @FXML private RadioButton radioBtnMan;
-    @FXML private RadioButton radioBtnWoman;
-    @FXML private TextField sportField;
-    @FXML private TextField numberField;
-    @FXML private TextField nameField;
-    @FXML private TextField countryField;
-    @FXML private DatePicker bornDate;
-    @FXML private Button ok;
-    @FXML private ProgressIndicator progress;
+public class SportController {
     @FXML private BorderPane progressPane;
+    @FXML private TextField nameField;
+    @FXML private ProgressIndicator progress;
+    @FXML private Button ok;
 
     @FXML
-    public void initialize() {
-        // Initializing variables
-        // Radio button
-        radioBtnMan.setToggleGroup(genderGroup);
-        radioBtnWoman.setToggleGroup(genderGroup);
-        radioBtnMan.setSelected(true);
-        // Datepicker
-        bornDate.setValue(LocalDate.now().minusYears(14));
-        bornDate.setPromptText(bornDate.getConverter().toString(bornDate.getValue()));
-        bornDate.setValue(null);
-        // Numeric textfield
-        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
-            String text = change.getText();
-            if (text.matches("[0-9]*")) {
-                return change;
-            }
-            return null;
-        });
-        numberField.setTextFormatter(textFormatter);
-
+    public void initialize(){
         // Event Handlers
         ok.setOnAction(event -> {
             // Le os campos
             String name = nameField.getText();
-            String country = countryField.getText();
-            String sport = sportField.getText();
-            int number = Integer.parseInt(numberField.getText());
-            LocalDate birth = bornDate.getValue();
-            String gender;
-            if(radioBtnMan.isSelected())
-                gender = "M";
-            else gender = "F";
 
             // Cria instancia atleta
-            Athlete athlete = new Athlete(name, sport, country, number, gender);
-            if(birth != null)
-                athlete.setBirth(birth);
+            Sport sport = new Sport(name);
 
             class DBService extends Service<String> {
                 @Override
@@ -69,7 +33,7 @@ public class AthleteController{
                     return new Task<String>() {
                         @Override
                         protected String call() throws Exception {
-                            athlete.insertIntoDB();
+                            sport.insertIntoDB();
                             return "ok";
                         }
                     };
@@ -90,7 +54,6 @@ public class AthleteController{
                         "Detalhes:\n" + service.getException().getMessage());
             });
             service.restart();
-
         });
     }
 
@@ -102,3 +65,4 @@ public class AthleteController{
         alert.showAndWait();
     }
 }
+

@@ -2,8 +2,6 @@ package main;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.db.Athlete;
 import main.db.Bridge;
+import main.db.Sport;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,6 +26,7 @@ public class StartController {
 
     // Barra de menu
     @FXML private Button btnAthletes;
+    @FXML private Button btnSport;
 
     // Barra de buscas
     @FXML private VBox searchBar;
@@ -44,6 +44,7 @@ public class StartController {
     @FXML private BorderPane progressPane;
 
     // Tabelas e colunas
+    // Tabela Atleta
     private ObservableList<Athlete> athleteData = FXCollections.observableArrayList();
     @FXML private TableView<Athlete> tableAthlete;
     @FXML private TableColumn<Athlete, String> athleteName;
@@ -52,12 +53,16 @@ public class StartController {
     @FXML private TableColumn<Athlete, Number> athleteNumber;
     @FXML private TableColumn<Athlete, String> athleteSport;
     @FXML private TableColumn<Athlete, LocalDate> athleteBirth;
+    // Tabela Esporte
+    private ObservableList<Sport> sportData = FXCollections.observableArrayList();
+    @FXML private TableView<Sport> tableSport;
+    @FXML private TableColumn<Sport, String> sportName;
 
     @FXML
     public void initialize() {
         // Inicializa tela inicial
-        //searchBar.setVisible(false);
-        //contentArea.setVisible(false);
+        searchBar.setVisible(false);
+        contentArea.setVisible(false);
 
         // Inicializa radio buttons
         rbtn1.setToggleGroup(fieldGroup);
@@ -74,6 +79,9 @@ public class StartController {
         athleteBirth.setCellValueFactory(cellData -> cellData.getValue().birthProperty());
         athleteCountry.setCellValueFactory(cellData -> cellData.getValue().countryProperty());
         tableAthlete.setItems(athleteData);
+        // Tabela Esporte
+        sportName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tableSport.setItems(sportData);
 
 
         // Define os handlers
@@ -81,6 +89,11 @@ public class StartController {
         btnAthletes.setOnAction(event -> {
             startAthleteView();
             searchAthletes();
+        });
+        // Botão Esporte
+        btnSport.setOnAction(event -> {
+            startSportView();
+            searchSports();
         });
 
         // Botão buscar
@@ -90,6 +103,10 @@ public class StartController {
                     startAthleteView();
                     searchAthletes();
                     break;
+                case 2:
+                    startSportView();
+                    searchSports();
+                    break;
             }
         });
 
@@ -98,6 +115,10 @@ public class StartController {
             switch (contentDisplay){
                 case 1:
                     openWindow("register/athlete.fxml");
+                    break;
+                case 2:
+                    openWindow("register/sport.fxml");
+                    break;
             }
         });
     }
@@ -111,7 +132,7 @@ public class StartController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(btnAdd.getScene().getWindow());
             stage.setTitle("Cadastrar");
-            stage.setScene(new Scene(root, 400, 600));
+            stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("../resources/icons/jogos_logo.png")));
             stage.show();
 
@@ -121,11 +142,21 @@ public class StartController {
         }
     }
 
+    private void hideTables(){
+        tableAthlete.setVisible(false);
+        tableSport.setVisible(false);
+    }
+
     private void startAthleteView(){
         contentDisplay = 1;
+        hideTables();
+        tableAthlete.setVisible(true);
+        searchBar.setVisible(true);
+        contentArea.setVisible(true);
         entityName.setText("Atleta");
         rbtn1.setText("Nome");
         rbtn2.setText("Número");
+        rbtn2.setVisible(true);
         rbtn3.setVisible(false);
         progressPane.setVisible(true);
         progress.setVisible(true);
@@ -140,6 +171,32 @@ public class StartController {
                     athleteData.addAll(Bridge.getAthletes("WHERE nome = '" + searchField.getText() + "'"));
                 else
                     athleteData.addAll(Bridge.getAthletes("WHERE numero = '" + searchField.getText() + "'"));
+                progress.setVisible(false);
+                progressPane.setVisible(false);
+            }
+        }.start();
+    }
+    private void startSportView(){
+        contentDisplay = 2;
+        hideTables();
+        tableSport.setVisible(true);
+        searchBar.setVisible(true);
+        contentArea.setVisible(true);
+        entityName.setText("Esporte");
+        rbtn1.setText("Nome");
+        rbtn2.setVisible(false);
+        rbtn3.setVisible(false);
+        progressPane.setVisible(true);
+        progress.setVisible(true);
+    }
+    private void searchSports(){
+        new Thread(){
+            public void run(){
+                sportData.clear();
+                if (searchField.getText().isEmpty())
+                    sportData.addAll(Bridge.getSports(null));
+                else
+                    sportData.addAll(Bridge.getSports("WHERE nome = '" + searchField.getText() + "'"));
                 progress.setVisible(false);
                 progressPane.setVisible(false);
             }

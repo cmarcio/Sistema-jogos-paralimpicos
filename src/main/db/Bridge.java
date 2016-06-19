@@ -81,4 +81,45 @@ public class Bridge {
 
         return athletes;
     }
+
+    public static ArrayList<Sport> getSports(String where) {
+        ArrayList<Sport> sports = new ArrayList<>();
+        Statement stmt = null;
+        Connection conn = connectDB();
+
+        try {
+            stmt = conn.createStatement();
+            String sql;
+            if (where == null)
+                sql = "SELECT nome FROM esporte";
+            else
+                sql = "SELECT nome FROM esporte " + where;
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString("nome");
+
+                //System.out.println();
+                Sport sport = new Sport(name);
+
+                sports.add(sport);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+                System.out.println("Conexão encerrada");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sports;
+    }
 }
