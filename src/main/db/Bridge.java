@@ -22,8 +22,10 @@ public class Bridge {
         try {
             // Register JDBC driver
             Class.forName(JDBC_DRIVER);
+            System.out.println("Driver registrado");
             // Open connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Conexão estabelecida");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             System.out.println("ERRO AO ABRIR CONEXÃO");
@@ -31,15 +33,19 @@ public class Bridge {
         return conn;
     }
 
-    public static ArrayList<Athlete> getAthletes(){
+    public static ArrayList<Athlete> getAthletes(String where){
         ArrayList<Athlete> athletes = new ArrayList<>();
         Statement stmt = null;
         Connection conn = connectDB();
 
         try {
             stmt = conn.createStatement();
+            String sql;
+            if(where == null)
+                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta";
+            else
+                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + where;
 
-            String sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta";
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -67,6 +73,7 @@ public class Bridge {
             try {
                 stmt.close();
                 conn.close();
+                System.out.println("Conexão encerrada");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

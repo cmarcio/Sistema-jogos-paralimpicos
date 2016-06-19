@@ -10,18 +10,18 @@
          <children>
             <Label id="title" text="Atleta" />
             <Label text="Nome" />
-            <TextField />
+            <TextField fx:id="nameField" promptText="Nome Sobrenome" />
             <Label text="Número do atleta" />
-            <TextField />
+            <TextField fx:id="numberField" promptText="123456" />
             <Label text="Esporte" />
-            <TextField />
+            <TextField fx:id="sportField" promptText="Natação" />
             <Label text="País" />
-            <TextField />
+            <TextField fx:id="countryField" promptText="Brasil" />
             <Label text="Data de Nascimento" />
             <DatePicker fx:id="bornDate" />
             <Label text="Sexo" />
-            <RadioButton mnemonicParsing="false" text="Masculino" />
-            <RadioButton mnemonicParsing="false" text="Feminino" />
+            <RadioButton fx:id="radioBtnMan" mnemonicParsing="false" text="Masculino" />
+            <RadioButton fx:id="radioBtnWoman" mnemonicParsing="false" text="Feminino" />
             <AnchorPane>
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -33,5 +33,10 @@
             </AnchorPane>
          </children>
       </VBox>
+      <BorderPane fx:id="progressPane" prefHeight="600.0" prefWidth="400.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <ProgressIndicator fx:id="progress" maxHeight="100.0" maxWidth="100.0" visible="false" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
