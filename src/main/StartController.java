@@ -113,15 +113,12 @@ public class StartController {
         btnSearch.setOnAction(event -> {
             switch (contentDisplay){
                 case 1:
-                    startAthleteView();
                     searchAthletes();
                     break;
                 case 2:
-                    startSportView();
                     searchSports();
                     break;
                 case 3:
-                    startCountryView();
                     searchCountries();
                     break;
             }
@@ -171,6 +168,7 @@ public class StartController {
     private void startAthleteView(){
         contentDisplay = 1;
         hideTables();
+        searchField.setText("");
         tableAthlete.setVisible(true);
         searchBar.setVisible(true);
         contentArea.setVisible(true);
@@ -200,6 +198,7 @@ public class StartController {
     private void startSportView(){
         contentDisplay = 2;
         hideTables();
+        searchField.setText("");
         tableSport.setVisible(true);
         searchBar.setVisible(true);
         contentArea.setVisible(true);
@@ -227,6 +226,7 @@ public class StartController {
     private void startCountryView() {
         contentDisplay = 3;
         hideTables();
+        searchField.setText("");
         tableCountry.setVisible(true);
         searchBar.setVisible(true);
         contentArea.setVisible(true);
