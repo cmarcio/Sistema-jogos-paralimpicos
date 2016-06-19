@@ -185,11 +185,11 @@ public class StartController {
             public void run(){
                 athleteData.clear();
                 if (searchField.getText().isEmpty())
-                    athleteData.addAll(Bridge.getAthletes(null));
+                    athleteData.addAll(Bridge.getAthletes(0, null));
                 else if (rbtn1.isSelected())
-                    athleteData.addAll(Bridge.getAthletes("WHERE nome = '" + searchField.getText() + "'"));
+                    athleteData.addAll(Bridge.getAthletes(1, searchField.getText()));
                 else
-                    athleteData.addAll(Bridge.getAthletes("WHERE numero = '" + searchField.getText() + "'"));
+                    athleteData.addAll(Bridge.getAthletes(2, searchField.getText()));
                 progress.setVisible(false);
                 progressPane.setVisible(false);
             }
@@ -216,7 +216,7 @@ public class StartController {
                 if (searchField.getText().isEmpty())
                     sportData.addAll(Bridge.getSports(null));
                 else
-                    sportData.addAll(Bridge.getSports("WHERE nome = '" + searchField.getText() + "'"));
+                    sportData.addAll(Bridge.getSports(searchField.getText()));
                 progress.setVisible(false);
                 progressPane.setVisible(false);
             }
@@ -244,7 +244,7 @@ public class StartController {
                 if (searchField.getText().isEmpty())
                     countryData.addAll(Bridge.getCountry(null));
                 else
-                    countryData.addAll(Bridge.getCountry("WHERE nome = '" + searchField.getText() + "'"));
+                    countryData.addAll(Bridge.getCountry(searchField.getText()));
                 progress.setVisible(false);
                 progressPane.setVisible(false);
             }

@@ -33,7 +33,7 @@ public class Bridge {
         return conn;
     }
 
-    public static ArrayList<Athlete> getAthletes(String where){
+    public static ArrayList<Athlete> getAthletes(int field, String value){
         ArrayList<Athlete> athletes = new ArrayList<>();
         Statement stmt = null;
         Connection conn = connectDB();
@@ -41,11 +41,12 @@ public class Bridge {
         try {
             stmt = conn.createStatement();
             String sql;
-            if(where == null)
+            if(value == null)
                 sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta";
+            else if(field == 1)
+                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + "WHERE nome = '" + value + "'";
             else
-                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + where;
-
+                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + "WHERE numero = '" + value + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -82,7 +83,7 @@ public class Bridge {
         return athletes;
     }
 
-    public static ArrayList<Sport> getSports(String where) {
+    public static ArrayList<Sport> getSports(String value) {
         ArrayList<Sport> sports = new ArrayList<>();
         Statement stmt = null;
         Connection conn = connectDB();
@@ -90,10 +91,10 @@ public class Bridge {
         try {
             stmt = conn.createStatement();
             String sql;
-            if (where == null)
+            if (value == null)
                 sql = "SELECT nome FROM esporte";
             else
-                sql = "SELECT nome FROM esporte " + where;
+                sql = "SELECT nome FROM esporte " + "WHERE nome = '" + value + "'";
 
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -123,7 +124,7 @@ public class Bridge {
         return sports;
     }
 
-    public static ArrayList<Country> getCountry(String where) {
+    public static ArrayList<Country> getCountry(String value) {
         ArrayList<Country> countries = new ArrayList<>();
         Statement stmt = null;
         Connection conn = connectDB();
@@ -131,10 +132,10 @@ public class Bridge {
         try {
             stmt = conn.createStatement();
             String sql;
-            if (where == null)
+            if (value == null)
                 sql = "SELECT nome FROM pais";
             else
-                sql = "SELECT nome FROM pais " + where;
+                sql = "SELECT nome FROM pais " + "WHERE nome = '" + value + "'";
 
             ResultSet rs = stmt.executeQuery(sql);
 
