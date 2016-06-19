@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.db.Athlete;
 import main.db.Bridge;
+import main.db.Country;
 import main.db.Sport;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class StartController {
     // Barra de menu
     @FXML private Button btnAthletes;
     @FXML private Button btnSport;
+    @FXML private Button btnCountry;
 
     // Barra de buscas
     @FXML private VBox searchBar;
@@ -57,6 +59,10 @@ public class StartController {
     private ObservableList<Sport> sportData = FXCollections.observableArrayList();
     @FXML private TableView<Sport> tableSport;
     @FXML private TableColumn<Sport, String> sportName;
+    // Tabela de países
+    private ObservableList<Country> countryData = FXCollections.observableArrayList();
+    @FXML private TableView<Country> tableCountry;
+    @FXML private TableColumn<Country, String> countryName;
 
     @FXML
     public void initialize() {
@@ -82,7 +88,9 @@ public class StartController {
         // Tabela Esporte
         sportName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tableSport.setItems(sportData);
-
+        // Tabela País
+        countryName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tableCountry.setItems(countryData);
 
         // Define os handlers
         // Botão Atletas
@@ -94,6 +102,11 @@ public class StartController {
         btnSport.setOnAction(event -> {
             startSportView();
             searchSports();
+        });
+        // Botão países
+        btnCountry.setOnAction(event -> {
+            startCountryView();
+            searchCountries();
         });
 
         // Botão buscar
@@ -107,6 +120,10 @@ public class StartController {
                     startSportView();
                     searchSports();
                     break;
+                case 3:
+                    startCountryView();
+                    searchCountries();
+                    break;
             }
         });
 
@@ -118,6 +135,9 @@ public class StartController {
                     break;
                 case 2:
                     openWindow("register/sport.fxml");
+                    break;
+                case 3:
+                    openWindow("register/country.fxml");
                     break;
             }
         });
@@ -145,6 +165,7 @@ public class StartController {
     private void hideTables(){
         tableAthlete.setVisible(false);
         tableSport.setVisible(false);
+        tableCountry.setVisible(false);
     }
 
     private void startAthleteView(){
@@ -197,6 +218,33 @@ public class StartController {
                     sportData.addAll(Bridge.getSports(null));
                 else
                     sportData.addAll(Bridge.getSports("WHERE nome = '" + searchField.getText() + "'"));
+                progress.setVisible(false);
+                progressPane.setVisible(false);
+            }
+        }.start();
+    }
+
+    private void startCountryView() {
+        contentDisplay = 3;
+        hideTables();
+        tableCountry.setVisible(true);
+        searchBar.setVisible(true);
+        contentArea.setVisible(true);
+        entityName.setText("País");
+        rbtn1.setText("Nome");
+        rbtn2.setVisible(false);
+        rbtn3.setVisible(false);
+        progressPane.setVisible(true);
+        progress.setVisible(true);
+    }
+    private void searchCountries() {
+        new Thread(){
+            public void run(){
+                countryData.clear();
+                if (searchField.getText().isEmpty())
+                    countryData.addAll(Bridge.getCountry(null));
+                else
+                    countryData.addAll(Bridge.getCountry("WHERE nome = '" + searchField.getText() + "'"));
                 progress.setVisible(false);
                 progressPane.setVisible(false);
             }

@@ -122,4 +122,45 @@ public class Bridge {
 
         return sports;
     }
+
+    public static ArrayList<Country> getCountry(String where) {
+        ArrayList<Country> countries = new ArrayList<>();
+        Statement stmt = null;
+        Connection conn = connectDB();
+
+        try {
+            stmt = conn.createStatement();
+            String sql;
+            if (where == null)
+                sql = "SELECT nome FROM pais";
+            else
+                sql = "SELECT nome FROM pais " + where;
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString("nome");
+
+                //System.out.println();
+                Country country = new Country(name);
+
+                countries.add(country);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+                System.out.println("Conexão encerrada");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return countries;
+    }
 }
