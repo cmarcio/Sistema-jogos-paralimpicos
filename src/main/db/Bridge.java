@@ -167,4 +167,137 @@ public class Bridge {
 
         return countries;
     }
+
+    public static ArrayList<Disability> getDisability(String value) {
+        ArrayList<Disability> disabilities = new ArrayList<>();
+        Statement stmt = null;
+        Connection conn = connectDB();
+
+        try {
+            stmt = conn.createStatement();
+            String sql;
+            if (value == null)
+                sql = "SELECT nome FROM deficiencia";
+            else
+                sql = "SELECT nome FROM deficiencia " + "WHERE upper(nome) LIKE '%" + value.toUpperCase() + "%'";
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString("nome");
+
+                //System.out.println();
+                Disability disability = new Disability(name);
+                disabilities.add(disability);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+                System.out.println("Conexão encerrada");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return disabilities;
+    }
+
+    public static void removeAthlete(int key){
+        Connection conn = connectDB();
+        Integer pk = key;
+        try {
+            Statement sttm = conn.createStatement();
+            String sql = "DELETE FROM atleta WHERE numero = " + pk.toString();
+            sttm.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao remover atleta");
+        }
+    }
+
+    public static void removeSport(String pk){
+        Connection conn = connectDB();
+
+        try {
+            Statement sttm = conn.createStatement();
+            String sql = "DELETE FROM esporte WHERE nome = '" + pk + "'";
+            sttm.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao remover esporte");
+        }
+    }
+
+    public static void removeCountry(String pk){
+        Connection conn = connectDB();
+
+        try {
+            Statement sttm = conn.createStatement();
+            String sql = "DELETE FROM pais WHERE nome = '" + pk + "'";
+            sttm.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao remover pais");
+        }
+    }
+
+    public static void removeDisability(String pk){
+        Connection conn = connectDB();
+
+        try {
+            Statement sttm = conn.createStatement();
+            String sql = "DELETE FROM deficiencia WHERE nome = '" + pk + "'";
+            sttm.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao remover esporte");
+        }
+    }
+
+    public static ArrayList<Disability> getAthleteDisabilities(int number) {
+        ArrayList<Disability> disabilities = new ArrayList<>();
+        Statement stmt = null;
+        Connection conn = connectDB();
+
+        try {
+            stmt = conn.createStatement();
+            String sql;
+
+            sql = "SELECT d.nome " +
+                    "from atleta a, deficiencia d, deficienciasatleta da " +
+                    "where (a.numero = " + Integer.toString(number) + " and a.numero = da.atleta and da.deficiencia = d.nome)";
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString(1);
+
+                //System.out.println();
+                Disability disability = new Disability(name);
+
+                disabilities.add(disability);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+                System.out.println("Conexão encerrada");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return disabilities;
+    }
 }

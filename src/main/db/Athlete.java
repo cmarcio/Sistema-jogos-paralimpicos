@@ -16,6 +16,10 @@ public class Athlete {
     private StringProperty gender;
     private ObjectProperty<LocalDate> birth;
 
+    public static String staticAthleteName;
+    public static String staticDisabilityName;
+    public static int staticNumber;
+
     public Athlete(String name, String sport, String country, int number, String gender, LocalDate birth){
         this.name = new SimpleStringProperty(name);
         this.sport = new SimpleStringProperty(sport);
@@ -58,6 +62,24 @@ public class Athlete {
         conn.close();
         System.out.println("Conexão encerrada");
     }
+
+    public static void insertAthleteDisabilityDB() throws SQLException {
+        String insertSQL = "INSERT INTO deficienciasatleta"
+                + "(deficiencia, atleta) VALUES"
+                + "(?,?)";
+
+        // Get connection to data base
+        Connection conn = Bridge.connectDB();
+        PreparedStatement preparedStatement = conn.prepareStatement(insertSQL);
+
+        preparedStatement.setString(1, staticDisabilityName);
+        preparedStatement.setInt(2, staticNumber);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+        conn.close();
+        System.out.println("Conexão encerrada");
+    }
+
 
     public final String getName() {
         return name.get();

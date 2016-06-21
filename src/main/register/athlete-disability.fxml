@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@../../styling/registers.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.register.AthleteDisabilityController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="400.0" styleClass="scenario" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="title" text="Atleta" />
+            <Label text="Nome" />
+            <Text id="name" fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TableView fx:id="tableDisability" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="disabilityName" prefWidth="75.0" text="Deficiências" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Label text="Deficiência" />
+            <HBox>
+               <children>
+                  <TextField fx:id="disabilityField" promptText="Visual" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <Button fx:id="add" mnemonicParsing="false" text="Adicionar" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <BorderPane fx:id="progressPane" prefHeight="600.0" prefWidth="400.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <ProgressIndicator fx:id="progress" maxHeight="100.0" maxWidth="100.0" visible="false" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

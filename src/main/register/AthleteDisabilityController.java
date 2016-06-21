@@ -1,31 +1,43 @@
 package main.register;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.db.Sport;
+import main.db.Athlete;
+import main.db.Bridge;
+import main.db.Disability;
 
-public class SportController {
+import java.time.LocalDate;
+
+public class AthleteDisabilityController {
+    // Tela de deficiencias
+    @FXML private Button add;
     @FXML private BorderPane progressPane;
-    @FXML private TextField nameField;
+    @FXML private Text name;
+    @FXML private TextField disabilityField;
     @FXML private ProgressIndicator progress;
-    @FXML private Button ok;
+    @FXML private TableView<Disability> tableDisability;
+    @FXML private TableColumn<Disability, String> disabilityName;
 
-    @FXML
-    public void initialize(){
+    private ObservableList<Disability> disabilityData = FXCollections.observableArrayList();
+
+    @FXML public void initialize() {
+        name.setText(Athlete.staticAthleteName);
+
+        disabilityName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tableDisability.setItems(disabilityData);
+        disabilityData.addAll(Bridge.getAthleteDisabilities(Athlete.staticNumber));
+
         // Event Handlers
-        ok.setOnAction(event -> {
-            // Le os campos
-            String name = nameField.getText();
-
-            // Cria instancia esporte
-            Sport sport = new Sport(name);
+        add.setOnAction(event -> {
+            // Cria instancia atleta
+            Athlete.staticDisabilityName = disabilityField.getText();
 
             class DBService extends Service<String> {
                 @Override
@@ -33,7 +45,7 @@ public class SportController {
                     return new Task<String>() {
                         @Override
                         protected String call() throws Exception {
-                            sport.insertIntoDB();
+                            Athlete.insertAthleteDisabilityDB();
                             return "ok";
                         }
                     };
@@ -46,7 +58,7 @@ public class SportController {
             progress.visibleProperty().bind(service.runningProperty());
             service.setOnSucceeded(workerStateEvent -> {
                 showAlert(Alert.AlertType.INFORMATION, "Concluído!", null, "O registro foi inserido no banco de dados");
-                Stage stage = (Stage) ok.getScene().getWindow();
+                Stage stage = (Stage) add.getScene().getWindow();
                 stage.close();
             });
             service.setOnFailed(workerStateEvent -> {
@@ -54,6 +66,7 @@ public class SportController {
                         "Detalhes:\n" + service.getException().getMessage());
             });
             service.restart();
+
         });
     }
 
@@ -65,4 +78,3 @@ public class SportController {
         alert.showAndWait();
     }
 }
-

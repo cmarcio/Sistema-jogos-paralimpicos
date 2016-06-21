@@ -8,6 +8,7 @@
     -highlight-color: #ffd130;
     -contrast-color1: #007fb8;
     -contrast-color2: #55ad4a;
+    -contrast-color2-light: #56D147;
 
 }
 
@@ -58,6 +59,16 @@
     -fx-padding: 3em 2em 0em 2em;
 }
 
+.content_area .button{
+    -fx-background-color: -contrast-color2;
+    -fx-text-fill: white;
+}
+
+.content_area .button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: -contrast-color2-light;
+}
+
 .content_area .vbox{
     -fx-background-color: white;
     -fx-padding: 5 10 0 10;
@@ -96,11 +107,6 @@
     -fx-cursor: hand;
     -fx-background-color: -highlight-color;
     -fx-resize: false;
-}
-
-.search_bar .add_button{
-    -fx-background-radius: 5 5 5 5;
-    -fx-background-color: -primary-color;
 }
 
 .search_bar .radio-button{

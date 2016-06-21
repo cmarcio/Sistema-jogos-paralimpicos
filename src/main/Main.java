@@ -21,7 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("start.fxml"));
         primaryStage.setTitle("Jogos Paralímpicos");
         primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../resources/icons/jogos_logo.png")));
+        //primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../resources/icons/jogos_logo.png")));
         primaryStage.show();
     }
 
