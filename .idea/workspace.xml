@@ -6,30 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Quadro de medalhas">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Sistema_jogos_paralimpicos_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/db/Disability.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/register/AthleteDisabilityController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/register/DisabilityController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/register/athlete-disability.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/register/disability.fxml" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/StartController.class" afterPath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/StartController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/db/Athlete.class" afterPath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/db/Athlete.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/db/Bridge.class" afterPath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/db/Bridge.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sistema-jogos-paralimpicos.iml" afterPath="$PROJECT_DIR$/Sistema-jogos-paralimpicos.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/start.fxml" afterPath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/main/start.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/styling/mystyle.css" afterPath="$PROJECT_DIR$/out/production/Sistema-jogos-paralimpicos/styling/mystyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/StartController.java" afterPath="$PROJECT_DIR$/src/main/StartController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/db/Athlete.java" afterPath="$PROJECT_DIR$/src/main/db/Athlete.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/db/Bridge.java" afterPath="$PROJECT_DIR$/src/main/db/Bridge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/register/AthleteController.java" afterPath="$PROJECT_DIR$/src/main/register/AthleteController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/register/SportController.java" afterPath="$PROJECT_DIR$/src/main/register/SportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/start.fxml" afterPath="$PROJECT_DIR$/src/main/start.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styling/mystyle.css" afterPath="$PROJECT_DIR$/src/styling/mystyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styling/registers.css" afterPath="$PROJECT_DIR$/src/styling/registers.css" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -864,7 +847,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466473891703</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="commit final">
+      <created>1466507088595</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1466507088595</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -933,7 +923,8 @@
     <MESSAGE value="bug campo de busca ok" />
     <MESSAGE value="Declaração explicita" />
     <MESSAGE value="Quadro de medalhas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Quadro de medalhas" />
+    <MESSAGE value="commit final" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit final" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
