@@ -116,7 +116,12 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                        <columns>
+                                          <TableColumn fx:id="countryPlace" prefWidth="75.0" text="Colocação" />
                                           <TableColumn fx:id="countryName" prefWidth="75.0" text="Nome" />
+                                          <TableColumn fx:id="countryGold" prefWidth="75.0" text="Ouros" />
+                                          <TableColumn fx:id="countrySilver" prefWidth="75.0" text="Pratas" />
+                                          <TableColumn fx:id="countryCopper" prefWidth="75.0" text="Bronzes" />
+                                          <TableColumn fx:id="countryTotal" prefWidth="75.0" text="Total" />
                                        </columns>
                                     </TableView>
                                  </children>

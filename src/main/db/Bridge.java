@@ -1,12 +1,7 @@
 package main.db;
 
-import oracle.sql.DATE;
-
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class Bridge {
     // JDBC driver name and database URL
@@ -44,7 +39,7 @@ public class Bridge {
             if(value == null)
                 sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta";
             else if(field == 1)
-                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + "WHERE nome = '" + value + "'";
+                sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + "WHERE upper(nome) LIKE '%" + value.toUpperCase() + "%'";
             else
                 sql = "SELECT nome, numero, esporte, pais, genero, nascimento FROM atleta " + "WHERE numero = '" + value + "'";
             ResultSet rs = stmt.executeQuery(sql);
@@ -94,7 +89,7 @@ public class Bridge {
             if (value == null)
                 sql = "SELECT nome FROM esporte";
             else
-                sql = "SELECT nome FROM esporte " + "WHERE nome = '" + value + "'";
+                sql = "SELECT nome FROM esporte " + "WHERE upper(nome) LIKE '%" + value.toUpperCase() + "%'";
 
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -133,19 +128,27 @@ public class Bridge {
             stmt = conn.createStatement();
             String sql;
             if (value == null)
-                sql = "SELECT nome FROM pais";
+                sql = "SELECT nome, ouros, pratas, bronzes, total FROM pais ORDER BY ouros, pratas, bronzes, nome";
             else
-                sql = "SELECT nome FROM pais " + "WHERE nome = '" + value + "'";
+                sql = "SELECT nome, ouros, pratas, bronzes, total FROM pais " + "WHERE upper(nome) LIKE '%" + value.toUpperCase() + "%'";
 
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 //Retrieve by column name
                 String name = rs.getString("nome");
+                Integer gold = rs.getInt("ouros");
+                Integer silver = rs.getInt("pratas");
+                Integer bronze = rs.getInt("bronzes");
+                Integer total = rs.getInt("total");
 
                 //System.out.println();
                 Country country = new Country(name);
-
+                country.setGold(gold);
+                country.setSilver(silver);
+                country.setBronze(bronze);
+                country.setTotal(total);
+                country.setPlace(countries.size()+1);
                 countries.add(country);
             }
             rs.close();

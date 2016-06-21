@@ -62,7 +62,13 @@ public class StartController {
     // Tabela de países
     private ObservableList<Country> countryData = FXCollections.observableArrayList();
     @FXML private TableView<Country> tableCountry;
+    @FXML private TableColumn<Country, Number> countryPlace;
     @FXML private TableColumn<Country, String> countryName;
+    @FXML private TableColumn<Country, Number> countryGold;
+    @FXML private TableColumn<Country, Number> countrySilver;
+    @FXML private TableColumn<Country, Number> countryCopper;
+    @FXML private TableColumn<Country, Number> countryTotal;
+
 
     @FXML
     public void initialize() {
@@ -90,6 +96,11 @@ public class StartController {
         tableSport.setItems(sportData);
         // Tabela País
         countryName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        countryGold.setCellValueFactory(cellData -> cellData.getValue().goldProperty());
+        countrySilver.setCellValueFactory(cellData -> cellData.getValue().silverProperty());
+        countryCopper.setCellValueFactory(cellData -> cellData.getValue().bronzeProperty());
+        countryTotal.setCellValueFactory(cellData -> cellData.getValue().totalProperty());
+        countryPlace.setCellValueFactory(cellData -> cellData.getValue().placeProperty());
         tableCountry.setItems(countryData);
 
         // Define os handlers
@@ -151,6 +162,7 @@ public class StartController {
             stage.setTitle("Cadastrar");
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("../resources/icons/jogos_logo.png")));
+            stage.setResizable(false);
             stage.show();
 
         } catch (IOException e) {
